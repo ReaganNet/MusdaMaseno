@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | MUSDA Church</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Adventist Font Suggestion -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-link:hover {
+      color: #facc15; /* Tailwind amber-400 */
+    }
+
+    .btn-primary:hover {
+      background-color: #2563eb; /* blue-600 */
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1e3a8a; /* blue-900 */
+      color: white;
+    }
+
+    .dropdown .dropdown-menu {
+      display: none;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      margin-top: 8px;
+      z-index: 10;
+    }
+
+    .inner-dropdown:hover .inner-dropdown-menu {
+      display: block;
+    }
+
+    .inner-dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+    }
+
+    /* Mobile menu styles */
+    .mobile-dropdown .mobile-dropdown-menu {
+      display: none;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-menu {
+      display: block;
+    }
+
+    .mobile-inner-dropdown .mobile-inner-dropdown-menu {
+      display: none;
+    }
+
+    .mobile-inner-dropdown.active .mobile-inner-dropdown-menu {
+      display: block;
+    }
+
+    /* Image styles */
+    .about-image {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .about-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sticky header scroll styles */
+    header.scrolled {
+      background-color: #1e40af; /* blue-800 */
+    }
+
+    header.scrolled .nav-link:hover {
+      color: #fcd34d; /* amber-300 */
+    }
+
+    header.scrolled .text-blue-800,
+    header.scrolled #menu-toggle {
+      color: white;
+    }
+
+    @media (max-width: 767px) {
+      .dropdown-menu, .inner-dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <!-- Replace with local asset if needed: src="path/to/local/logo.png" -->
+        <img src="https://sdawebguy.com/genesis/wp-content/uploads/logo-meaning-1.png" alt="SDA Logo" class="w-10 h-10">
+        <span class="text-2xl font-bold text-blue-800">MUSDA Church</span>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-blue-800 text-2xl focus:outline-none">
+        <i class="bi bi-list"></i>
+      </button>
+      <nav class="hidden md:flex space-x-6 text-base font-normal">
+        <a href="index.html" class="nav-link">Home</a>
+
+        <!-- Dropdown: About -->
+        <div class="relative dropdown">
+          <a href="#" class="nav-link">About Us</a>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a>
+            <!-- Inner Dropdown: Church Organization and Leadership -->
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <div class="inner-dropdown-menu">
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a>
+          </div>
+        </div>
+
+        <!-- Dropdown: Departments -->
+        <div class="relative dropdown">
+          <button class="nav-link">Departments</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <!-- Inner Dropdown: Personal Ministry -->
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <div class="inner-dropdown-menu">
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a>
+          </div>
+        </div>
+
+        <!-- Dropdown: Media -->
+        <div class="relative dropdown">
+          <button class="nav-link">Media</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a>
+          </div>
+        </div>
+
+        <a href="#" class="nav-link">Announcements</a>
+
+        <!-- Dropdown: Events -->
+        <div class="relative dropdown">
+          <button class="nav-link">Events</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a>
+          </div>
+        </div>
+
+        <!-- Dropdown: Devotionals -->
+        <div class="relative dropdown">
+          <button class="nav-link">Devotionals</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a>
+          </div>
+        </div>
+
+        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="text-blue-700 hover:underline font-normal">Login</a>
+      </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-lg px-4 py-6">
+      <ul class="flex flex-col space-y-4 text-base font-normal">
+        <li><a href="index.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Home</a></li>
+        <li><a href="about.html" class="text-blue-700 underline block px-4 py-2 font-normal">About</a></li>
+
+        <!-- Mobile Dropdown: About -->
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">About</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a></li>
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a></li>
+          </ul>
+        </li>
+
+        <!-- Mobile Dropdown: Departments -->
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Departments</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a></li>
+          </ul>
+        </li>
+
+        <!-- Mobile Dropdown: Media -->
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Media</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#" class="nav-link block px-4 py-2 hover:bg-blue-50">Announcements</a></li>
+
+        <!-- Mobile Dropdown: Events -->
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Events</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a></li>
+          </ul>
+        </li>
+
+        <!-- Mobile Dropdown: Devotionals -->
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Devotionals</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#" class="nav-link block px-4 py-2 hover:bg-blue-50">Contact</a></li>
+        <li><a href="#" class="text-blue-700 hover:underline block px-4 py-2 font-normal">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- About Us Section -->
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
+      <div class="w-full md:w-1/2">
+        <!-- Replace with local asset if needed: src="path/to/local/about-image.jpg" -->
+        <img src="https://media.istockphoto.com/id/157610088/photo/old-white-church.jpg?s=2048x2048&w=is&k=20&c=JfQ-shz9Gj59Ti9k3MLccIlNOnr8n1dW4p1WjvQKRio=" alt="Worship Service" class="about-image w-full h-auto rounded-lg shadow-lg object-cover" style="max-height: 400px;">
+      </div>
+      <div class="w-full md:w-1/2 text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-800 mb-4">About Us</h1>
+        <p class="text-lg text-gray-700 italic">“A place to grow spiritually and serve faithfully”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main About Content -->
+  <main class="max-w-6xl mx-auto px-6 py-16 space-y-16">
+    <!-- Our History -->
+    <section>
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Our History</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Maseno University Seventh-day Adventist (MUSDA) Church was established in the early 1990s as a vibrant, student-led congregation within the heart of Maseno University. Founded to meet the spiritual needs of students, faculty, and the surrounding community, MUSDA has grown into a dynamic center for worship, fellowship, and outreach. Over the decades, the church has nurtured countless young leaders who have gone on to serve in various capacities within the Seventh-day Adventist denomination and beyond. From humble beginnings in small campus gatherings to a thriving community hosting impactful evangelistic campaigns, MUSDA remains committed to spreading the gospel and preparing for Christ’s soon return.
+      </p>
+    </section>
+
+    <!-- Our Mission -->
+    <section>
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Our Mission</h2>
+      <p class="text-gray-700 leading-relaxed">
+        The mission of MUSDA Church is to proclaim the everlasting gospel of Jesus Christ through vibrant worship, intentional evangelism, meaningful fellowship, dedicated discipleship, and compassionate service. We aim to equip our members with the spiritual tools to live out their faith, foster a sense of community, and prepare the world for the imminent return of our Savior. By engaging students and the broader community in Bible-based programs, we seek to inspire a lifelong commitment to Christ and His teachings.
+      </p>
+    </section>
+
+    <!-- Our Vision -->
+    <section>
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Our Vision</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Our vision is to be a Christ-centered, Spirit-led church that exemplifies biblical values and transforms lives. We aspire to be a beacon of hope within Maseno University and the surrounding region, fostering spiritual growth, encouraging servant leadership, and promoting unity among believers. Through dynamic worship services, active ministry involvement, and community outreach, MUSDA Church seeks to reflect God’s love and prepare hearts for eternity.
+      </p>
+    </section>
+
+    <!-- Our Values -->
+    <section>
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Our Values</h2>
+      <p class="text-gray-700 leading-relaxed">
+        At MUSDA Church, our core values are rooted in Scripture and guide our actions and interactions:
+      </p>
+      <ul class="list-disc list-inside text-gray-700 leading-relaxed mt-4">
+        <li><strong>Faith</strong>: We uphold unwavering trust in God’s Word and His promises.</li>
+        <li><strong>Community</strong>: We foster a welcoming and inclusive environment for all.</li>
+        <li><strong>Service</strong>: We are committed to serving others with compassion and humility.</li>
+        <li><strong>Discipleship</strong>: We prioritize spiritual growth through Bible study and prayer.</li>
+        <li><strong>Evangelism</strong>: We actively share the gospel to reach souls for Christ.</li>
+      </ul>
+    </section>
+
+    <!-- Our Leadership -->
+    <section>
+      <h2 class="text-3xl font-bold text-blue-800 mb-4">Our Leadership</h2>
+      <p class="text-gray-700 leading-relaxed">
+        MUSDA Church is led by a dedicated team of student leaders and faculty advisors who are passionate about advancing God’s kingdom. Our leadership structure includes a church pastor, elders, and department heads who oversee various ministries such as music, youth, health, and community services. Guided by the principles of servant leadership, our team works collaboratively to ensure that every member and visitor experiences the love of Christ. We encourage active participation from all members, fostering a culture of shared responsibility and spiritual accountability.
+      </p>
+    </section>
+
+    <!-- Leadership Quote -->
+    <section class="bg-blue-50 p-8 rounded-lg shadow text-center">
+      <blockquote class="text-xl italic text-blue-900 font-semibold">
+        “The church is God’s appointed agency for the salvation of men.”<br />
+        <span class="text-sm text-gray-600">– Ellen G. White</span>
+      </blockquote>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-10 text-center">
+    <p class="text-base">© 2025 Maseno University SDA Church. All Rights Reserved.</p>
+    <div class="mt-3 space-x-6">
+      <a href="https://www.youtube.com" class="hover:text-gray-300"><i class="bi bi-youtube text-xl"></i></a>
+      <a href="https://www.whatsapp.com" class="hover:text-gray-300"><i class="bi bi-whatsapp text-xl"></i></a>
+      <a href="https://www.instagram.com" class="hover:text-gray-300"><i class="bi bi-instagram text-xl"></i></a>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Dropdowns and Scroll Effect -->
+  <script>
+    // Desktop Dropdown logic
+    try {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        const button = dropdown.querySelector('.nav-link');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        let timeout;
+        dropdown.addEventListener('mouseenter', () => {
+          clearTimeout(timeout);
+          dropdown.classList.add('active');
+        });
+        dropdown.addEventListener('mouseleave', () => {
+          timeout = setTimeout(() => {
+            dropdown.classList.remove('active');
+          }, 200);
+        });
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('active');
+        });
+      });
+
+      document.querySelectorAll('.inner-dropdown').forEach(innerDropdown => {
+        const button = innerDropdown.querySelector('button');
+        const menu = innerDropdown.querySelector('.inner-dropdown-menu');
+        let timeout;
+        innerDropdown.addEventListener('mouseenter', () => {
+          clearTimeout(timeout);
+          menu.style.display = 'block';
+        });
+        innerDropdown.addEventListener('mouseleave', () => {
+          timeout = setTimeout(() => {
+            menu.style.display = 'none';
+          }, 200);
+        });
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+      });
+
+      // Mobile Dropdown logic
+      document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+        const button = dropdown.querySelector('button');
+        const menu = dropdown.querySelector('.mobile-dropdown-menu');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('active');
+        });
+      });
+
+      document.querySelectorAll('.mobile-inner-dropdown').forEach(innerDropdown => {
+        const button = innerDropdown.querySelector('button');
+        const menu = innerDropdown.querySelector('.mobile-inner-dropdown-menu');
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          innerDropdown.classList.toggle('active');
+        });
+      });
+
+      // Hamburger menu toggle
+      const toggleBtn = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown') && !e.target.closest('.inner-dropdown') && !e.target.closest('.mobile-dropdown') && !e.target.closest('.mobile-inner-dropdown')) {
+          document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+          document.querySelectorAll('.inner-dropdown-menu').forEach(menu => menu.style.display = 'none');
+          document.querySelectorAll('.mobile-dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+          document.querySelectorAll('.mobile-inner-dropdown').forEach(innerDropdown => innerDropdown.classList.remove('active'));
+        }
+      });
+
+      // Sticky header scroll effect
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    } catch (error) {
+      console.error('JavaScript error:', error);
+    }
+  </script>
+</body>
+</html>
