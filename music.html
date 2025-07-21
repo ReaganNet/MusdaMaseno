@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ministries | MUSDA Church</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: linear-gradient(to right, #eff6ff, #f8fafc); /* blue-50 to gray-50 */
+    }
+    .nav-link:hover {
+      color: #400dce; /* Matches announcements.html */
+    }
+    .btn-primary:hover {
+      background-color: #e3e6ee; /* blue-600 */
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #edeef1; /* blue-900 */
+      color: white;
+    }
+    .dropdown .dropdown-menu {
+      display: none;
+    }
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      margin-top: 8px;
+      z-index: 10;
+    }
+    .inner-dropdown .inner-dropdown-menu {
+      display: none;
+    }
+    .inner-dropdown.active .inner-dropdown-menu {
+      display: block;
+    }
+    .inner-dropdown-menu {
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+    }
+    .mobile-dropdown .mobile-dropdown-menu {
+      display: none;
+    }
+    .mobile-dropdown.active .mobile-dropdown-menu {
+      display: block;
+    }
+    .mobile-inner-dropdown .mobile-inner-dropdown-menu {
+      display: none;
+    }
+    .mobile-inner-dropdown.active .mobile-inner-dropdown-menu {
+      display: block;
+    }
+    header.scrolled {
+      background-color: #8e9094; /* gray-500 */
+    }
+    header.scrolled .nav-link:hover {
+      color: #fcd34d; /* amber-300 */
+    }
+    header.scrolled .text-blue-800,
+    header.scrolled #menu-toggle {
+      color: white;
+    }
+    .ministry-card:hover {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    }
+    .modal, .gallery-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.active, .gallery-modal.active {
+      display: flex;
+    }
+    .modal-content, .gallery-modal-content {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .ministry-section {
+      display: none;
+    }
+    .ministry-section.active {
+      display: block;
+    }
+    .ministry-toggle.active {
+      background-color: #e3f2fd; /* blue-50 */
+      color: #1e40af; /* blue-800 */
+      font-weight: 700;
+    }
+    .gallery-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+    }
+    .gallery-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .gallery-container::-webkit-scrollbar-thumb {
+      background-color: #1e40af; /* blue-800 */
+      border-radius: 4px;
+    }
+    .gallery-image {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease-in-out;
+    }
+    .gallery-image:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 767px) {
+      .dropdown-menu, .inner-dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+      }
+      .nav-link {
+        font-size: 0.875rem; /* text-sm */
+      }
+      .nav-link i {
+        font-size: 1.125rem; /* text-lg */
+      }
+      .ministry-toggle {
+        font-size: 0.875rem; /* text-sm */
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <img src="https://sdawebguy.com/genesis/wp-content/uploads/logo-meaning-1.png" alt="SDA Logo" class="w-10 h-10" loading="lazy">
+        <span class="text-2xl font-bold text-blue-800">MUSDA Church</span>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-blue-800 text-2xl focus:outline-none">
+        <i class="bi bi-list"></i>
+      </button>
+      <nav class="hidden md:flex space-x-6 text-base font-normal">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="relative dropdown">
+          <button class="nav-link">About Us</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a>
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <div class="inner-dropdown-menu">
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link text-blue-800 font-bold border-b-2 border-blue-800">Departments</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <div class="inner-dropdown-menu">
+                <a href="ministries.html#music-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a>
+                <a href="ministries.html#youth-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a>
+                <a href="ministries.html#health-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a>
+                <a href="ministries.html#stewardship-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a>
+                <a href="ministries.html#womens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a>
+                <a href="ministries.html#mens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a>
+                <a href="ministries.html#childrens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a>
+                <a href="ministries.html#ict-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link">Media</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a>
+          </div>
+        </div>
+        <a href="announcements.html" class="nav-link">Announcements</a>
+        <div class="relative dropdown">
+          <button class="nav-link">Events</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link">Devotionals</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a>
+          </div>
+        </div>
+        <a href="#" class="nav-link">Contact</a>
+        <a href="login.html" class="text-blue-700 hover:underline font-normal">Login</a>
+      </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-lg px-4 py-6">
+      <ul class="flex flex-col space-y-4 text-base font-normal">
+        <li><a href="index.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Home</a></li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">About Us</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a></li>
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left text-blue-800 font-bold">Departments</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="ministries.html#music-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a></li>
+                <li><a href="ministries.html#youth-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a></li>
+                <li><a href="ministries.html#health-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a></li>
+                <li><a href="ministries.html#stewardship-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a></li>
+                <li><a href="ministries.html#womens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a></li>
+                <li><a href="ministries.html#mens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a></li>
+                <li><a href="ministries.html#childrens-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a></li>
+                <li><a href="ministries.html#ict-ministry" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Media</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a></li>
+          </ul>
+        </li>
+        <li><a href="announcements.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Announcements</a></li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Events</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Devotionals</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a></li>
+          </ul>
+        </li>
+        <li><a href="#" class="nav-link block px-4 py-2 hover:bg-blue-50">Contact</a></li>
+        <li><a href="./giving.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Giving</a></li>
+        <li><a href="login.html" class="text-blue-700 hover:underline block px-4 py-2 font-normal">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 sm:p-6 max-w-7xl mx-auto">
+    <!-- Ministry Navigation -->
+    <div class="mb-6">
+      <div class="flex flex-wrap gap-2 md:gap-4">
+        <button data-ministry="music-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-blue-800 font-bold active">Music Ministry</button>
+        <button data-ministry="youth-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Youth Ministry (AY)</button>
+        <button data-ministry="health-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Health & Temperance</button>
+        <button data-ministry="stewardship-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Stewardship</button>
+        <button data-ministry="womens-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Women’s Ministry</button>
+        <button data-ministry="mens-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Men’s Ministry</button>
+        <button data-ministry="childrens-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">Children’s Ministry</button>
+        <button data-ministry="ict-ministry" class="ministry-toggle bg-white px-4 py-2 rounded-md text-gray-700 hover:bg-blue-50">ICT/Communication</button>
+      </div>
+    </div>
+
+    <!-- Ministry Content -->
+    <div>
+      <!-- Music Ministry Section -->
+      <section id="music-ministry" class="ministry-section active bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4"><i class="bi bi-music-note-beamed mr-2"></i>Music Ministry</h2>
+        <p class="text-gray-700 mb-4">
+          The MUSDA Church Music Ministry is dedicated to glorifying God through the sacred art of music, uplifting souls and drawing hearts closer to Him. Our Church Choir, the cornerstone of this ministry, specializes in classical sacred music, including traditional hymns and anthems that inspire reverence and spiritual renewal. Guided by the belief that music is a divine gift, we aim to create an atmosphere of worship that reflects the beauty and majesty of God’s presence.
+        </p>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-clock mr-2"></i>Church Choir Schedule</h3>
+        <ul class="list-disc pl-6 text-gray-700 mb-4">
+          <li><strong>Sunday Practice:</strong> 3:00 PM at GSQ</li>
+          <li><strong>Monday Bible Study:</strong> 6:30 PM at Millennium Complex</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-book mr-2"></i>Biblical Inspiration</h3>
+        <div class="mb-4">
+          <p class="text-sm text-gray-600 italic">
+            <strong>Psalm 95:1</strong> – “O come, let us sing unto the Lord: let us make a joyful noise to the rock of our salvation.” (KJV)
+          </p>
+          <p class="text-sm text-gray-600 italic">
+            <strong>Colossians 3:16</strong> – “Let the word of Christ dwell in you richly in all wisdom; teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.” (KJV)
+          </p>
+        </div>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-quote mr-2"></i>Our Musical Mission</h3>
+        <p class="text-gray-700 mb-4">
+          Our choir performs classical sacred music, from timeless hymns to choral anthems, carefully selected to elevate the worship experience. As Ellen G. White writes in <em>The Voice in Speech and Song</em>, “Music is of heavenly origin. There is great power in music to impress the mind with the sublime truth of God” (VSS, p. 421).
+        </p>
+        <p class="text-gray-700 mb-4">
+          She further emphasizes, “Singing is as much an act of worship as is prayer. Indeed, many a song is prayer” (VSS, p. 423). Our music ministry embraces this principle, using classical arrangements to create a worshipful atmosphere that honors God and uplifts souls.
+        </p>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-music-note-list mr-2"></i>Featured Hymns</h3>
+        <div class="mb-4">
+          <h4 class="text-lg font-medium text-gray-800">SDAH 83: O Worship the King</h4>
+          <p class="text-sm text-gray-600 italic">
+            O worship the King, all glorious above,<br>
+            And gratefully sing His wonderful love;<br>
+            Our Shield and Defender, the Ancient of Days,<br>
+            Pavilioned in splendor, and girded with praise.
+          </p>
+        </div>
+        <div class="mb-4">
+          <h4 class="text-lg font-medium text-gray-800">SDAH 474: Take the Name of Jesus with You</h4>
+          <p class="text-sm text-gray-600 italic">
+            Take the name of Jesus with you,<br>
+            Child of sorrow and of woe;<br>
+            It will joy and comfort give you,<br>
+            Take it then where’er you go.
+          </p>
+        </div>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-calendar-event mr-2"></i>Upcoming Events</h3>
+        <ul class="list-disc pl-6 text-gray-700 mb-4">
+          <li><strong>Choir Performance:</strong> Sabbath, July 26, 2025, 10:00 AM at MUSDA Church Sanctuary</li>
+          <li><strong>Music Workshop:</strong> Saturday, August 2, 2025, 2:00 PM at GSQ</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-camera mr-2"></i>Photo Gallery</h3>
+        <div class="gallery-container mb-4">
+          <img src="https://images.unsplash.com/photo-1507457379474-5d4d5376c677?q=80&w=600&auto=format&fit=crop" alt="Choir Performance 1" class="gallery-image w-48 h-32 object-cover rounded-md mr-4 cursor-pointer" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1598387180437-80388ae0df15?q=80&w=600&auto=format&fit=crop" alt="Choir Practice" class="gallery-image w-48 h-32 object-cover rounded-md mr-4 cursor-pointer" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop" alt="Choir Group" class="gallery-image w-48 h-32 object-cover rounded-md mr-4 cursor-pointer" loading="lazy">
+        </div>
+        <h3 class="text-xl font-semibold text-blue-800 mb-2"><i class="bi bi-newspaper mr-2"></i>Latest News</h3>
+        <div class="space-y-4 mb-4">
+          <div class="border-b border-gray-200 pb-2">
+            <p class="text-sm text-gray-700">New anthem “Great Is Thy Faithfulness” added to our repertoire for the upcoming Sabbath service.</p>
+            <p class="text-xs text-gray-500">Posted: July 20, 2025</p>
+          </div>
+          <div class="border-b border-gray-200 pb-2">
+            <p class="text-sm text-gray-700">Choir wins “Best Sacred Performance” at the Regional SDA Music Festival.</p>
+            <p class="text-xs text-gray-500">Posted: July 15, 2025</p>
+          </div>
+        </div>
+        <a href="#request-access-modal" id="join-choir" class="text-blue-700 hover:underline text-sm mt-4 inline-block">
+          <i class="bi bi-person-plus mr-2"></i>Join the Church Choir
+        </a>
+      </section>
+      <!-- Placeholder Sections for Other Ministries -->
+      <section id="youth-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Youth Ministry (AY)</h2>
+        <p class="text-gray-700 mb-4">Details for Youth Ministry coming soon.</p>
+      </section>
+      <section id="health-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Health & Temperance</h2>
+        <p class="text-gray-700 mb-4">Details for Health & Temperance coming soon.</p>
+      </section>
+      <section id="stewardship-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Stewardship</h2>
+        <p class="text-gray-700 mb-4">Details for Stewardship coming soon.</p>
+      </section>
+      <section id="womens-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Women’s Ministry</h2>
+        <p class="text-gray-700 mb-4">Details for Women’s Ministry coming soon.</p>
+      </section>
+      <section id="mens-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Men’s Ministry</h2>
+        <p class="text-gray-700 mb-4">Details for Men’s Ministry coming soon.</p>
+      </section>
+      <section id="childrens-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">Children’s Ministry</h2>
+        <p class="text-gray-700 mb-4">Details for Children’s Ministry coming soon.</p>
+      </section>
+      <section id="ict-ministry" class="ministry-section bg-white rounded-xl shadow-lg p-6 ministry-card">
+        <h2 class="text-2xl font-bold text-blue-800 mb-4">ICT/Communication</h2>
+        <p class="text-gray-700 mb-4">Details for ICT/Communication coming soon.</p>
+      </section>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="gallery-modal">
+      <div class="gallery-modal-content relative bg-white rounded-xl p-4 max-w-3xl w-full">
+        <button id="close-gallery" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">
+          <i class="bi bi-x-lg text-xl"></i>
+        </button>
+        <img id="gallery-full-image" src="" alt="Full-size image" class="w-full h-auto max-h-[80vh] object-contain rounded-md">
+      </div>
+    </div>
+  </main>
+
+  <!-- Request Access Modal -->
+  <div id="request-access-modal" class="modal">
+    <div class="modal-content w-full max-w-md bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+      <h2 class="text-xl font-bold text-blue-800 mb-2">Request Access</h2>
+      <p class="text-sm text-gray-600 mb-4">Register to join MUSDA Church</p>
+      <form action="#" method="POST" class="space-y-4">
+        <div>
+          <label for="full-name" class="text-sm font-medium text-gray-700">Full Name</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-person text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="full-name" name="full_name" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter full name" required>
+          </div>
+        </div>
+        <div>
+          <label for="residential-area" class="text-sm font-medium text-gray-700">Residential Area</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-house text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="residential-area" name="residential_area" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter residential area" required>
+          </div>
+        </div>
+        <div>
+          <label for="registration-number" class="text-sm font-medium text-gray-700">Registration Number</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-card-text text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="registration-number" name="registration_number" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter registration number" required>
+          </div>
+        </div>
+        <div>
+          <label for="course" class="text-sm font-medium text-gray-700">Course</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-book text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="course" name="course" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter course" required>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-envelope text-gray-400 text-sm mr-2"></i>
+            <input type="email" id="email" name="email" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="flex space-x-4">
+          <button type="submit" class="btn-primary w-full bg-blue-800 text-white font-medium py-2 rounded-md transition duration-300 flex items-center justify-center">
+            <i class="bi bi-person-plus mr-2"></i> Submit
+          </button>
+          <button type="button" id="cancel-request" class="btn-secondary w-full bg-gray-600 text-white font-medium py-2 rounded-md transition duration-300 flex items-center justify-center">
+            <i class="bi bi-x-circle mr-2"></i> Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4">MUSDA Church</h3>
+        <p class="text-sm">Maseno University SDA Church is dedicated to fostering a vibrant spiritual community, grounded in faith and fellowship.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
+          <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+          <li><a href="announcements.html" class="hover:text-amber-300">Announcements</a></li>
+          <li><a href="#" class="hover:text-amber-300">Events</a></li>
+          <li><a href="#" class="hover:text-amber-300">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-instagram"></i></a>
+        </div>
+        <p class="text-sm mt-4">Email: <a href="mailto:info@musdachurch.org" class="hover:text-amber-300">info@musdachurch.org</a></p>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-sm border-t border-blue-800 pt-4">
+      <p>© 2025 Maseno University SDA Church. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    try {
+      // Header Scroll Effect
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      });
+
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Desktop Dropdown Toggle
+      document.querySelectorAll('.dropdown > button').forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const dropdown = button.parentElement;
+          const isActive = dropdown.classList.contains('active');
+          document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('active');
+            }
+          });
+          dropdown.classList.toggle('active', !isActive);
+        });
+      });
+
+      document.querySelectorAll('.inner-dropdown > button').forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const innerDropdown = button.parentElement;
+          const isActive = innerDropdown.classList.contains('active');
+          const parentDropdown = innerDropdown.closest('.dropdown');
+          parentDropdown.querySelectorAll('.inner-dropdown').forEach(otherInner => {
+            if (otherInner !== innerDropdown) {
+              otherInner.classList.remove('active');
+            }
+          });
+          innerDropdown.classList.toggle('active', !isActive);
+        });
+      });
+
+      // Mobile Dropdown Toggle
+      document.querySelectorAll('.mobile-dropdown > button').forEach(button => {
+        button.addEventListener('click', () => {
+          const dropdown = button.parentElement;
+          const isActive = dropdown.classList.contains('active');
+          document.querySelectorAll('.mobile-dropdown').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('active');
+            }
+          });
+          dropdown.classList.toggle('active', !isActive);
+        });
+      });
+
+      document.querySelectorAll('.mobile-inner-dropdown > button').forEach(button => {
+        button.addEventListener('click', () => {
+          const innerDropdown = button.parentElement;
+          const isActive = innerDropdown.classList.contains('active');
+          const parentDropdown = innerDropdown.closest('.mobile-dropdown');
+          parentDropdown.querySelectorAll('.mobile-inner-dropdown').forEach(otherInner => {
+            if (otherInner !== innerDropdown) {
+              otherInner.classList.remove('active');
+            }
+          });
+          innerDropdown.classList.toggle('active', !isActive);
+        });
+      });
+
+      // Ministry Section Toggle
+      document.querySelectorAll('.ministry-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+          const ministryId = button.getAttribute('data-ministry');
+          document.querySelectorAll('.ministry-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          document.querySelectorAll('.ministry-toggle').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          document.getElementById(ministryId).classList.add('active');
+          button.classList.add('active');
+        });
+      });
+
+      // Request Access Modal Toggle
+      const joinChoirLink = document.getElementById('join-choir');
+      const requestAccessModal = document.getElementById('request-access-modal');
+      const cancelRequest = document.getElementById('cancel-request');
+      joinChoirLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        requestAccessModal.classList.add('active');
+      });
+      cancelRequest.addEventListener('click', () => {
+        requestAccessModal.classList.remove('active');
+      });
+      requestAccessModal.addEventListener('click', (e) => {
+        if (e.target === requestAccessModal) {
+          requestAccessModal.classList.remove('active');
+        }
+      });
+
+      // Gallery Modal Toggle
+      const galleryModal = document.getElementById('gallery-modal');
+      const galleryFullImage = document.getElementById('gallery-full-image');
+      const closeGallery = document.getElementById('close-gallery');
+      document.querySelectorAll('.gallery-image').forEach(image => {
+        image.addEventListener('click', () => {
+          galleryFullImage.src = image.src;
+          galleryFullImage.alt = image.alt;
+          galleryModal.classList.add('active');
+        });
+      });
+      closeGallery.addEventListener('click', () => {
+        galleryModal.classList.remove('active');
+      });
+      galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+          galleryModal.classList.remove('active');
+        }
+      });
+    } catch (error) {
+      console.error('JavaScript error:', error);
+    }
+  </script>
+</body>
+</html>
