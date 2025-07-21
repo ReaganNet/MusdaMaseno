@@ -24,14 +24,39 @@
       border-color: #2563eb; /* blue-600 */
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
     }
-    .login-btn:hover {
+    .login-btn:hover,
+    .register-btn:hover,
+    .cancel-btn:hover {
       transform: scale(1.05);
       transition: transform 0.2s ease-in-out;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-gradient-to-r from-blue-50 to-gray-50">
 
+  <!-- Login Form -->
   <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-6 border border-gray-200">
     <!-- Logo & Title -->
     <div class="flex flex-col items-center mb-6">
@@ -42,7 +67,7 @@
     </div>
 
     <!-- Login Form -->
-    <form action="dashboard.php" method="POST" class="space-y-5">
+    <form action="admin.html" method="POST" class="space-y-5">
       <!-- Email -->
       <div class="relative">
         <label for="email" class="text-sm font-medium text-gray-700">Email</label>
@@ -69,7 +94,7 @@
       <!-- Footer Actions -->
       <div class="flex justify-between text-sm text-gray-600 mt-4">
         <a href="#" class="text-blue-700 hover:underline">Forgot Password?</a>
-        <a href="#" class="text-blue-700 hover:underline">Request Access</a>
+        <a href="#" id="request-access" class="text-blue-700 hover:underline">Request Access</a>
       </div>
     </form>
 
@@ -79,5 +104,102 @@
     </div>
   </div>
 
+  <!-- Registration Modal -->
+  <div id="register-modal" class="modal">
+    <div class="modal-content w-full max-w-md bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+      <!-- Modal Header -->
+      <div class="flex flex-col items-center mb-6">
+        <h2 class="text-xl font-bold text-blue-800">Request Access</h2>
+        <p class="text-sm text-gray-600 mt-1">Register to join MUSDA Church</p>
+      </div>
+
+      <!-- Registration Form -->
+      <form action="register.php" method="POST" class="space-y-5">
+        <!-- Full Name -->
+        <div class="relative">
+          <label for="full-name" class="text-sm font-medium text-gray-700">Full Name</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-person text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="full-name" name="full_name" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter full name" required>
+          </div>
+        </div>
+
+        <!-- Residential Area -->
+        <div class="relative">
+          <label for="residential-area" class="text-sm font-medium text-gray-700">Residential Area</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-house text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="residential-area" name="residential_area" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter residential area" required>
+          </div>
+        </div>
+
+        <!-- Registration Number -->
+        <div class="relative">
+          <label for="registration-number" class="text-sm font-medium text-gray-700">Registration Number</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-card-text text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="registration-number" name="registration_number" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter registration number" required>
+          </div>
+        </div>
+
+        <!-- Course -->
+        <div class="relative">
+          <label for="course" class="text-sm font-medium text-gray-700">Course</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-book text-gray-400 text-sm mr-2"></i>
+            <input type="text" id="course" name="course" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="Enter course" required>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="relative">
+          <label for="register-email" class="text-sm font-medium text-gray-700">Email</label>
+          <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 mt-1 focus-within:ring-2 focus-within:ring-blue-600">
+            <i class="bi bi-envelope text-gray-400 text-sm mr-2"></i>
+            <input type="email" id="register-email" name="email" class="form-control w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-400" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex space-x-4">
+          <button type="submit" class="register-btn w-full bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 rounded-md transition duration-300 flex items-center justify-center">
+            <i class="bi bi-person-plus mr-2"></i> Submit
+          </button>
+          <button type="button" id="cancel-register" class="cancel-btn w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 rounded-md transition duration-300 flex items-center justify-center">
+            <i class="bi bi-x-circle mr-2"></i> Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </body>
+<script>
+  try {
+    // Modal toggle logic
+    const requestAccessLink = document.getElementById('request-access');
+    const registerModal = document.getElementById('register-modal');
+    const cancelButton = document.getElementById('cancel-register');
+
+    // Open modal
+    requestAccessLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      registerModal.classList.add('active');
+    });
+
+    // Close modal on Cancel button
+    cancelButton.addEventListener('click', () => {
+      registerModal.classList.remove('active');
+    });
+
+    // Close modal when clicking outside
+    registerModal.addEventListener('click', (e) => {
+      if (e.target === registerModal) {
+        registerModal.classList.remove('active');
+      }
+    });
+  } catch (error) {
+    console.error('JavaScript error:', error);
+  }
+</script>
 </html>
