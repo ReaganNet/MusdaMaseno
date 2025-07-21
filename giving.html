@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUSDA Church | Giving</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Adventist Font Suggestion -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-link:hover {
+      color: #400dce; /* Tailwind amber-400 */
+    }
+
+    .btn-primary:hover {
+      background-color: #e3e6ee; /* blue-600 */
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #edeef1; /* blue-900 */
+      color: white;
+    }
+
+    .dropdown .dropdown-menu {
+      display: none;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      margin-top: 8px;
+      z-index: 10;
+    }
+
+    .inner-dropdown:hover .inner-dropdown-menu {
+      display: block;
+    }
+
+    .inner-dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 200px;
+    }
+
+    /* Mobile menu styles */
+    .mobile-dropdown .mobile-dropdown-menu {
+      display: none;
+    }
+
+    .mobile-dropdown.active .mobile-dropdown-menu {
+      display: block;
+    }
+
+    .mobile-inner-dropdown .mobile-inner-dropdown-menu {
+      display: none;
+    }
+
+    .mobile-inner-dropdown.active .mobile-inner-dropdown-menu {
+      display: block;
+    }
+
+    /* Sticky header scroll styles */
+    header.scrolled {
+      background-color: #8e9094; /* blue-800 */
+    }
+
+    header.scrolled .nav-link:hover {
+      color: #fcd34d; /* amber-300 */
+    }
+
+    header.scrolled .text-blue-800,
+    header.scrolled #menu-toggle {
+      color: white;
+    }
+
+    @media (max-width: 767px) {
+      .dropdown-menu, .inner-dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <img src="https://sdawebguy.com/genesis/wp-content/uploads/logo-meaning-1.png" alt="SDA Logo" class="w-10 h-10">
+        <span class="text-2xl font-bold text-blue-800">MUSDA Church</span>
+      </div>
+      <button id="menu-toggle" class="md:hidden text-blue-800 text-2xl focus:outline-none">
+        <i class="bi bi-list"></i>
+      </button>
+      <nav class="hidden md:flex space-x-6 text-base font-normal">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="relative dropdown">
+          <button class="nav-link">About Us</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a>
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <div class="inner-dropdown-menu">
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link">Departments</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <div class="relative inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <div class="inner-dropdown-menu">
+                <a href="music.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a>
+                <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a>
+              </div>
+            </div>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link">Media</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a>
+          </div>
+        </div>
+        <a href="./announcements.html" class="nav-link">Announcements</a>
+        <div class="relative dropdown">
+          <button class="nav-link">Events</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a>
+          </div>
+        </div>
+        <div class="relative dropdown">
+          <button class="nav-link">Devotionals</button>
+          <div class="dropdown-menu absolute bg-white shadow-lg py-2 w-48 mt-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a>
+          </div>
+        </div>
+        <a href="#" class="nav-link">Contact</a>
+        <a href="./giving.html" class="nav-link">Giving</a>
+        <a href="./login.html" class="text-blue-700 hover:underline font-normal">Login</a>
+      </nav>
+    </div>
+    <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-lg px-4 py-6">
+      <ul class="flex flex-col space-y-4 text-base font-normal">
+        <li><a href="index.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Home</a></li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">About</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="about.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">About MUSDA Church</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Who Are the Seventh-day Adventists?</a></li>
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Church Organization and Leadership</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2023/24</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Church Leadership Year 2024/25</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Patron</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the Pastor</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Message from the First Elder</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Departments</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li class="mobile-inner-dropdown">
+              <button class="block px-4 py-2 hover:bg-blue-50 text-sm w-full text-left font-normal">Personal Ministry</button>
+              <ul class="mobile-inner-dropdown-menu pl-6 space-y-2">
+                <li><a href="music.html" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Music Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Youth Ministry (AY)</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Health & Temperance</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Stewardship</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Women’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Men’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Children’s Ministry</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">ICT/Communication</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Education Department</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Community Services</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Media</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sermon Archives</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Live Stream</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Photo Gallery</a></li>
+          </ul>
+        </li>
+        <li><a href="announcements.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Announcements</a></li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Events</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Upcoming Events</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Event Calendar</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Special Programs</a></li>
+          </ul>
+        </li>
+        <li class="mobile-dropdown">
+          <button class="nav-link block px-4 py-2 hover:bg-blue-50 w-full text-left">Devotionals</button>
+          <ul class="mobile-dropdown-menu pl-6 space-y-2">
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Daily Devotionals</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Sabbath School Lessons</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-blue-50 text-sm font-normal">Prayer Requests</a></li>
+          </ul>
+        </li>
+        <li><a href="#" class="nav-link block px-4 py-2 hover:bg-blue-50">Contact</a></li>
+        <li><a href="giving.html" class="nav-link block px-4 py-2 hover:bg-blue-50">Giving</a></li>
+        <li><a href="login.html" class="text-blue-700 hover:underline block px-4 py-2 font-normal">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Giving Section -->
+  <section class="py-16 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-4xl font-bold text-center text-blue-800 mb-8">Give to Support Our Mission</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <img src="https://images.unsplash.com/photo-1516383740770-cb89c0cd4277?q=80&w=1920&auto=format&fit=crop" alt="Giving" class="w-full h-96 object-cover rounded-lg shadow-lg mb-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">The Joy of Giving</h2>
+          <p class="text-gray-600 mb-4">
+            At Maseno University SDA Church, we believe in the biblical principle of giving as an act of worship and stewardship. Your generous contributions support our mission to spread the gospel, nurture spiritual growth, and serve our community.
+          </p>
+          <p class="text-gray-600 mb-4 italic">
+            “Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.” – 2 Corinthians 9:7
+          </p>
+          <p class="text-gray-600 mb-4">
+            Your gifts enable us to fund ministries, community outreach, and church operations, ensuring that we continue to be a beacon of hope and faith.
+          </p>
+          <p class="text-gray-600 italic">
+            “Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this,” says the Lord Almighty, “and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it.” – Malachi 3:10
+          </p>
+          <a href="#donation-form" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition mt-4 inline-block">Donate Now</a>
+        </div>
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Online Donation</h2>
+          <div id="donation-form" class="bg-white p-6 rounded-lg shadow-lg">
+            <form class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Name" required>
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Email" required>
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Phone Number">
+              </div>
+              <div>
+                <label for="amount" class="block text-sm font-medium text-gray-700">Donation Amount (KES)</label>
+                <input type="number" id="amount" name="amount" min="1" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Enter Amount" required>
+              </div>
+              <div>
+                <label for="purpose" class="block text-sm font-medium text-gray-700">Purpose of Donation</label>
+                <select id="purpose" name="purpose" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                  <option value="tithe">Tithe</option>
+                  <option value="offering">Offering</option>
+                  <option value="building-fund">Building Fund</option>
+                  <option value="community-outreach">Community Outreach</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="payment-method" class="block text-sm font-medium text-gray-700">Payment Method</label>
+                <select id="payment-method" name="payment-method" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                  <option value="mpesa">M-Pesa</option>
+                  <option value="bank-transfer">Bank Transfer</option>
+                  <option value="credit-card">Credit/Debit Card</option>
+                </select>
+              </div>
+              <div id="mpesa-details" class="hidden space-y-2">
+                <p class="text-sm text-gray-600">Please send your donation to:</p>
+                <p class="text-sm font-medium text-gray-800">M-Pesa Paybill: 123456</p>
+                <p class="text-sm font-medium text-gray-800">Account Name: MUSDA Church</p>
+              </div>
+              <div id="bank-details" class="hidden space-y-2">
+                <p class="text-sm text-gray-600">Bank Transfer Details:</p>
+                <p class="text-sm font-medium text-gray-800">Bank: KCB Bank</p>
+                <p class="text-sm font-medium text-gray-800">Account Number: 987654321</p>
+                <p class="text-sm font-medium text-gray-800">Branch: Maseno</p>
+              </div>
+              <div>
+                <label for="comments" class="block text-sm font-medium text-gray-700">Comments (Optional)</label>
+                <textarea id="comments" name="comments" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Any additional information"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition">Submit Donation</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4">MUSDA Church</h3>
+        <p class="text-sm">Maseno University SDA Church is dedicated to fostering a vibrant spiritual community, grounded in faith and fellowship.</p>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-amber-300">Home</a></li>
+          <li><a href="about.html" class="hover:text-amber-300">About</a></li>
+          <li><a href="announcements.html" class="hover:text-amber-300">Announcements</a></li>
+          <li><a href="#" class="hover:text-amber-300">Events</a></li>
+          <li><a href="#" class="hover:text-amber-300">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-2xl hover:text-amber-300"><i class="bi bi-instagram"></i></a>
+        </div>
+        <p class="text-sm mt-4">Email: <a href="mailto:info@musdachurch.org" class="hover:text-amber-300">info@musdachurch.org</a></p>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-sm border-t border-blue-800 pt-4">
+      <p>© 2025 Maseno University SDA Church. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Dropdown and Form Logic -->
+  <script>
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const button = dropdown.querySelector('.nav-link');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      let timeout;
+      dropdown.addEventListener('mouseenter', () => {
+        clearTimeout(timeout);
+        dropdown.classList.add('active');
+      });
+      dropdown.addEventListener('mouseleave', () => {
+        timeout = setTimeout(() => {
+          dropdown.classList.remove('active');
+        }, 200);
+      });
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.inner-dropdown').forEach(innerDropdown => {
+      const button = innerDropdown.querySelector('button');
+      const menu = innerDropdown.querySelector('.inner-dropdown-menu');
+      let timeout;
+      innerDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(timeout);
+        menu.style.display = 'block';
+      });
+      innerDropdown.addEventListener('mouseleave', () => {
+        timeout = setTimeout(() => {
+          menu.style.display = 'none';
+        }, 200);
+      });
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      const button = dropdown.querySelector('button');
+      const menu = dropdown.querySelector('.mobile-dropdown-menu');
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+      });
+    });
+
+    document.querySelectorAll('.mobile-inner-dropdown').forEach(innerDropdown => {
+      const button = innerDropdown.querySelector('button');
+      const menu = innerDropdown.querySelector('.mobile-inner-dropdown-menu');
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        innerDropdown.classList.toggle('active');
+      });
+    });
+
+    const toggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown') && !e.target.closest('.inner-dropdown') && !e.target.closest('.mobile-dropdown') && !e.target.closest('.mobile-inner-dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+        document.querySelectorAll('.inner-dropdown-menu').forEach(menu => menu.style.display = 'none');
+        document.querySelectorAll('.mobile-dropdown').forEach(dropdown => dropdown.classList.remove('active'));
+        document.querySelectorAll('.mobile-inner-dropdown').forEach(innerDropdown => innerDropdown.classList.remove('active'));
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    const paymentMethodSelect = document.getElementById('payment-method');
+    const mpesaDetails = document.getElementById('mpesa-details');
+    const bankDetails = document.getElementById('bank-details');
+
+    paymentMethodSelect.addEventListener('change', (e) => {
+      mpesaDetails.classList.add('hidden');
+      bankDetails.classList.add('hidden');
+      if (e.target.value === 'mpesa') {
+        mpesaDetails.classList.remove('hidden');
+      } else if (e.target.value === 'bank-transfer') {
+        bankDetails.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
